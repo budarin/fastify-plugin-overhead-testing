@@ -1,4 +1,5 @@
 const pg = require('pg');
+const logger = require('./services/pinoLogger');
 const fastify = require('fastify')({ logger: true });
 
 const pool = new pg.Pool({
@@ -15,11 +16,17 @@ fastify.register((fast, options, done) => {
     done();
 });
 
-fastify.post('/', async () => {
-    const data = await pool.query('select now()');
-    const result = JSON.stringify(data.rows);
-
-    return result;
+fastify.register((instance, _, done) => {
+    instance.route({
+        method: 'POST',
+        url: '/',
+        handler: async (req, res) => {
+            const data = await pool.query('select now()');
+            const result = JSON.stringify(data.rows);
+            return result;
+        },
+    });
+    done();
 });
 
 const start = async () => {

@@ -1,13 +1,20 @@
 const pgPlugin = require('./plugin');
+const logger = require('./services/pinoLogger');
 const fastify = require('fastify')({ logger: true });
 
 fastify.register(pgPlugin);
 
-fastify.post('/', async (req, res) => {
-    const data = await req.pgQuery('select now()');
-    const result = JSON.stringify(data);
-
-    return result;
+fastify.register((instance, _, done) => {
+    instance.route({
+        method: 'POST',
+        url: '/',
+        handler: async (req, res) => {
+            const data = await req.pgQuery('select now()');
+            const result = JSON.stringify(data);
+            return result;
+        },
+    });
+    done();
 });
 
 const start = async () => {
