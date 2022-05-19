@@ -8,18 +8,15 @@ const pool = new pg.Pool({
     host: 'localhost',
 });
 
-fastify.register((fast, options, done) => {
-    fast.addHook('onClose', async () => {
-        await pool.end();
-    });
-    done();
+fastify.addHook('onClose', async () => {
+    await pool.end();
 });
 
-fastify.get('/', async () => {
+fastify.post('/', async () => {
     const data = await pool.query('select now()');
-    const result = JSON.stringify(data.rows);
+    // const result = JSON.stringify(data.rows);
 
-    return result;
+    return { hello: 'world' } || data;
 });
 
 const start = async () => {
