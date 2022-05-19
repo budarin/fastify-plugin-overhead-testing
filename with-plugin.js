@@ -3,7 +3,7 @@ const fastify = require('fastify')({ logger: true });
 
 fastify.register(pgPlugin);
 
-fastify.get('/', async (req, res) => {
+fastify.post('/', async (req, res) => {
     const data = await req.pgQuery('select now()');
     const result = JSON.stringify(data);
 

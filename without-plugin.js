@@ -15,7 +15,7 @@ fastify.register((fast, options, done) => {
     done();
 });
 
-fastify.get('/', async () => {
+fastify.post('/', async () => {
     const data = await pool.query('select now()');
     const result = JSON.stringify(data.rows);
 
