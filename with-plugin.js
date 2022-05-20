@@ -5,9 +5,9 @@ fastify.register(pgPlugin);
 
 fastify.post('/', async (req, res) => {
     const data = await req.pgQuery('select now()');
-    // const result = JSON.stringify(data);
+    const result = JSON.stringify(data);
 
-    return data;
+    return result;
 });
 
 const start = async () => {

@@ -1,4 +1,5 @@
 const pg = require('pg');
+const logger = require('./services/pinoLogger');
 const fastify = require('fastify')({ logger: true });
 
 const pool = new pg.Pool({

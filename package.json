@@ -8,7 +8,9 @@
         "autocannon": "^7.9.0",
         "fastify": "^3.29.0",
         "fastify-plugin": "^3.0.1",
-        "pg": "^8.7.3"
+        "pg": "^8.7.3",
+        "pino": "^7.11.0",
+        "pino-pretty": "^7.6.1"
     },
     "scripts": {
         "start-with-plugin": "node ./with-plugin.js",
