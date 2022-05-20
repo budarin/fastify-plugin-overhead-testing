@@ -1,4 +1,5 @@
 const pgPlugin = require('./plugin');
+const logger = require('./services/pinoLogger');
 const fastify = require('fastify')({ logger: true });
 
 fastify.register(pgPlugin);

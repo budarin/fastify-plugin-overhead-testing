@@ -23,7 +23,6 @@ const coreOptions =
           }
         : {
               level: 'trace',
-              extreme: true,
               transport: {
                   target: 'pino-pretty',
                   options: {
