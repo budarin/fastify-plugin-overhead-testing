@@ -1,2 +1,3 @@
-# fastify-plugin-pref-penalty
-fastify-plugin-pref-penalty
+# fastify-plugin-overhead-testing
+
+Testing performance overhead of using plugin and decorator
